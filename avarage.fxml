@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="460.0" prefWidth="687.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo17.AvaregeController">
+   <children>
+      <ImageView fitHeight="143.0" fitWidth="159.0" layoutX="6.0" layoutY="14.0">
+         <image>
+            <Image url="photo_2023-12-22_00-34-49.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="154.0" fitWidth="171.0" layoutY="147.0">
+         <image>
+            <Image url="photo_2023-12-22_00-34-54.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="137.0" fitWidth="171.0" layoutY="301.0">
+         <image>
+            <Image url="photo_2023-12-22_00-34-42.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="178.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latte:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="178.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Characteristics: Consists of espresso and plenty of hot milk. Soft, delicate taste with a slight milky sweetness." wrappingWidth="508.5875244140625">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="177.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When to drink: Any time of day, especially suitable for those who prefer a milder coffee taste." wrappingWidth="488.6605224609375">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="19.0" fitWidth="95.0" layoutX="178.0" layoutY="122.0">
+         <image>
+            <Image url="@../../../../../../../../Downloads/photo_2023-12-18_01-19-53.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="179.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capuccino:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="177.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Characteristics: Strong, intense taste, with rich aroma and thick texture.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="177.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When to drink: Morning or afternoon when you need a quick and energetic boost." wrappingWidth="476.2933349609375">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="19.0" fitWidth="95.0" layoutX="177.0" layoutY="255.0">
+         <image>
+            <Image url="photo_2023-12-22_02-30-27.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="177.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Esspresso:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="177.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Characteristics: Consists of espresso, hot milk and milk foam. Soft, balanced taste with creamy texture." wrappingWidth="488.6605224609375">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="177.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When to drink: During the morning or mid-afternoon when you want something richer than espresso but not as milky as a latte." wrappingWidth="476.2933349609374">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="19.0" fitWidth="95.0" layoutX="177.0" layoutY="406.0">
+         <image>
+            <Image url="photo_2023-12-22_02-30-33.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="avg_menu" layoutX="624.0" layoutY="419.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="58.0" text="MENU" />
+   </children>
+</AnchorPane>

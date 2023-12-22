@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="459.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo17.WaitController">
+   <children>
+      <ImageView fitHeight="378.0" fitWidth="345.0" layoutX="14.0" layoutY="67.0">
+         <image>
+            <Image url="photo_2023-12-22_01-44-46.jpg" />
+         </image>
+      </ImageView>
+      <TextField alignment="CENTER" layoutX="-5.0" prefHeight="50.0" prefWidth="377.0" text="It's happening.">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </TextField>
+      <Button fx:id="next_wait" layoutX="307.0" layoutY="427.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="NEXT">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
