@@ -1,0 +1,284 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+enum Size {
+        SMALL,
+        MEDIUM,
+        LARGE
+        }
+
+abstract class Coffee {
+    private Size size;
+    private CoffeeRating rating;
+
+    public Coffee(Size size,CoffeeRating rating) {
+        this.size = size;
+        this.rating = rating;
+    }
+
+
+
+    public abstract void brew();
+
+    public Size getSize() {
+        return size;
+    }
+
+    public abstract double getPrice();
+    public void rateCoffee(double rating) {
+        this.rating.addRating(rating);
+    }
+
+    public double getAverageRating() {
+        return rating.getAverageRating();
+    }
+}
+
+class Espresso extends Coffee {
+    public Espresso(Size size,CoffeeRating rating) {
+        super(size,rating);
+    }
+
+    public void brew() {
+        System.out.println("Brewing Espresso...");
+    }
+
+    public double getPrice() {
+        switch (getSize()) {
+            case SMALL:
+                return 2.0;
+            case MEDIUM:
+                return 2.5;
+            case LARGE:
+                return 3.0;
+            default:
+                throw new IllegalArgumentException("Invalid size");
+        }
+    }
+}
+
+class Latte extends Coffee {
+    public Latte(Size size,CoffeeRating rating) {
+        super(size,rating);
+    }
+
+    public void brew() {
+        System.out.println("Brewing Latte...");
+    }
+
+    public double getPrice() {
+        switch (getSize()) {
+            case SMALL:
+                return 3.0;
+            case MEDIUM:
+                return 3.5;
+            case LARGE:
+                return 4.0;
+            default:
+                throw new IllegalArgumentException("Invalid size");
+        }
+    }
+}
+
+class Cappuccino extends Coffee {
+    public Cappuccino(Size size,CoffeeRating rating) {
+        super(size,rating);
+    }
+
+    public void brew() {
+        System.out.println("Brewing Cappuccino...");
+    }
+
+    public double getPrice() {
+        switch (getSize()) {
+            case SMALL:
+                return 3.5;
+            case MEDIUM:
+                return 4.0;
+            case LARGE:
+                return 4.5;
+            default:
+                throw new IllegalArgumentException("Invalid size");
+        }
+    }
+}
+interface CoffeeFactory {
+    Coffee createCoffee(Size size,CoffeeRating rating);
+}
+
+class CoffeeMachine implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+    private boolean isBrewing;
+
+
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+
+    public void startBrewing() {
+        isBrewing = true;
+        notifyObservers();
+    }
+
+    public void finishBrewing() {
+        isBrewing = false;
+        notifyObservers();
+    }
+
+    public boolean isBrewing() {
+        return isBrewing;
+    }
+}class CoffeeMachineAdapter implements Observer {
+    private CoffeeMachine coffeeMachine;
+
+    public CoffeeMachineAdapter(CoffeeMachine coffeeMachine) {
+        this.coffeeMachine = coffeeMachine;
+    }
+
+    public void update() {
+        if (coffeeMachine.isBrewing()) {
+            System.out.println("Adapter: Coffee is brewing...");
+        }
+    }
+}class CoffeeRating {
+    private int totalRatings;
+    private int numberOfRatings;
+
+    public CoffeeRating() {
+        this.totalRatings = 0;
+        this.numberOfRatings = 0;
+    }
+
+    public void addRating(double rating) {
+        totalRatings += rating;
+        numberOfRatings++;
+    }
+
+    public double getAverageRating() {
+        return numberOfRatings == 0 ? 0 : (double) totalRatings / numberOfRatings;
+    }
+}    class EspressoFactory implements CoffeeFactory {
+    public Coffee createCoffee(Size size,CoffeeRating rating) {
+        return new Espresso(size,rating);
+    }
+}
+
+class LatteFactory implements CoffeeFactory {
+    public Coffee createCoffee(Size size,CoffeeRating rating) {
+        return new Latte(size,rating);
+    }
+}
+
+class CappuccinoFactory implements CoffeeFactory {
+    public Coffee createCoffee(Size size,CoffeeRating rating) {
+        return new Cappuccino(size,rating);
+    }
+}
+class CoffeeMachineApp {
+
+    public static void main(String[] args){
+        while(true){
+
+            CoffeeMachine coffeeMachine = new CoffeeMachine();
+
+            coffeeMachine.registerObserver(new CoffeeMachineAdapter(coffeeMachine));
+
+
+            CoffeeFactory coffeeFactory = getUserChoice();
+            Size size = getUserSize();
+            CoffeeRating rating = new CoffeeRating();
+
+
+            Coffee coffee = coffeeFactory.createCoffee(size, rating);
+
+
+            coffeeMachine.startBrewing();
+            coffee.brew();
+
+            double ratings = getUserRating();
+            coffee.rateCoffee(ratings);
+            coffeeMachine.finishBrewing();
+
+
+            System.out.println("Total Price: $" + coffee.getPrice());
+            System.out.println("Average Rating: " + coffee.getAverageRating());
+        }
+    }
+
+    private static double getUserRating() {
+        System.out.println("Rate our coffee:");
+        Scanner scanner = new Scanner(System.in);
+        double rate = scanner.nextDouble();
+        return rate;
+    }
+
+    private static CoffeeFactory getUserChoice() {
+        System.out.println("Choose a type of coffee:");
+        System.out.println("1. Espresso");
+        System.out.println("2. Latte");
+        System.out.println("3. Cappuccino");
+
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                return new EspressoFactory();
+            case 2:
+                return new LatteFactory();
+            case 3:
+                return new CappuccinoFactory();
+            default:
+                throw new IllegalArgumentException("Invalid choice");
+        }
+
+    }
+
+    private static Size getUserSize() {
+        System.out.println("Choose the size of coffee:");
+        System.out.println("1. Small");
+        System.out.println("2. Medium");
+        System.out.println("3. Large");
+
+        Scanner scanner = new Scanner(System.in);
+        int sizeChoice = scanner.nextInt();
+
+        switch (sizeChoice) {
+            case 1:
+                return Size.SMALL;
+            case 2:
+                return Size.MEDIUM;
+            case 3:
+                return Size.LARGE;
+            default:
+                throw new IllegalArgumentException("Invalid size choice");
+        }
+    }
+}     interface Observer {
+    void update();
+}
+ interface Subject {
+    void registerObserver(Observer observer);
+
+    void removeObserver(Observer observer);
+
+    void notifyObservers();
+}
+ class User implements Observer {
+    public void update() {
+        System.out.println("Notification: Your coffee is ready!");
+    }
+}
